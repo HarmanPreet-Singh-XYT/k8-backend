@@ -37,11 +37,10 @@ kind: Service
 metadata:
   name: metric-backend-service
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: metric-backend
   ports:
     - protocol: TCP
-      port: 4000 # should match the secret's port or else it won't work
+      port: 80
       targetPort: 4000 # should match the secret's port or else it won't work
-      nodePort: 31000 # the port on which you want to expose the service
