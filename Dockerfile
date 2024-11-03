@@ -32,5 +32,8 @@ RUN npm install --omit=dev
 # Expose the port the app runs on
 EXPOSE 4000
 
+ARG PORT
+ENV PORT=$PORT
+
 # Start the application
-CMD ["node", "dist/index.js"]
+CMD ["node", "index.js"]
