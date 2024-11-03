@@ -1,0 +1,47 @@
+# secrets
+apiVersion: v1
+kind: Secret
+metadata:  
+  name: metric-secret
+type: Opaque
+data:
+  PORT: 4000 # change if you want to change the port
+---
+#deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metric-backend-deployment
+spec:
+  selector:
+    matchLabels:
+      app: metric-backend
+  template:
+    metadata:
+      labels:
+        app: metric-backend
+    spec:
+      containers:
+        - name: metric-backend
+          image: harmanpreet27/metric-backend
+          env:
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: metric-secret
+                  key: PORT
+---
+#service
+apiVersion: v1
+kind: Service
+metadata:
+  name: metric-backend-service
+spec:
+  type: NodePort
+  selector:
+    app: metric-backend
+  ports:
+    - protocol: TCP
+      port: 4000 # should match the secret's port or else it won't work
+      targetPort: 4000 # should match the secret's port or else it won't work
+      nodePort: 31000 # the port on which you want to expose the service
