@@ -5,7 +5,7 @@ metadata:
   name: metric-secret
 type: Opaque
 data:
-  PORT: wpY0MDAwCg== # change if you want to change the port
+  PORT: NDAwMA== # change if you want to change the port
 ---
 #deployment
 apiVersion: apps/v1
