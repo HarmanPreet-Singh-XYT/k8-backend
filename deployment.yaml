@@ -44,3 +44,4 @@ spec:
     - protocol: TCP
       port: 4000
       targetPort: 4000 # should match the secret's port or else it won't work
+      nodePort: 31000
