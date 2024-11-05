@@ -1,12 +1,3 @@
-# secrets
-apiVersion: v1
-kind: Secret
-metadata:  
-  name: metric-secret
-type: Opaque
-data:
-  PORT: NDAwMA== # change if you want to change the port
----
 #deployment
 apiVersion: apps/v1
 kind: Deployment
@@ -26,10 +17,7 @@ spec:
           image: harmanpreet27/metric-backend
           env:
             - name: PORT
-              valueFrom:
-                secretKeyRef:
-                  name: metric-secret
-                  key: PORT
+              value: 4000 #server port
 ---
 #service
 apiVersion: v1
