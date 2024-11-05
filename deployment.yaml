@@ -17,7 +17,7 @@ spec:
           image: harmanpreet27/metric-backend
           env:
             - name: PORT
-              value: 4000 #server port
+              value: "4000" #server port
 ---
 #service
 apiVersion: v1
