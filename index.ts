@@ -42,7 +42,6 @@ app.get('/slow', (req: Request, res: Response) => {
 
       setTimeout(() => {
           res.status(200).send({ message: `Heavy task completed in ${delay}ms` });
-          res.send();
       }, delay);
   }
 });
