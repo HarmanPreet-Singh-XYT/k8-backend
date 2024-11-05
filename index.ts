@@ -34,14 +34,15 @@ app.get('/slow', (req: Request, res: Response) => {
   if (shouldFail) {
       // Send a 500 error if the route fails
       logger.error('Slow route failed');
-      return res.status(500).send({ error: 'An error occurred' });
+      res.status(500).send({ error: 'An error occurred',message:'Slow route failed' });
   } else {
       // Simulate a delay for successful requests
       logger.info('Slow route succeeded');
       const delay = Math.floor(Math.random() * 900) + 10; // 10ms to 1000ms
 
       setTimeout(() => {
-          res.send(`Heavy task completed in ${delay}ms`);
+          res.status(200).send({ message: `Heavy task completed in ${delay}ms` });
+          res.send();
       }, delay);
   }
 });
